@@ -128,14 +128,14 @@ function _doctorwhen_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
 }
 
 /**
- * @return CRM_Doctorwhen_Upgrader
+ * @return CRM_DoctorWhen_Upgrader
  */
 function _doctorwhen_civix_upgrader() {
-  if (!file_exists(__DIR__ . '/CRM/Doctorwhen/Upgrader.php')) {
+  if (!file_exists(__DIR__ . '/CRM/DoctorWhen/Upgrader.php')) {
     return NULL;
   }
   else {
-    return CRM_Doctorwhen_Upgrader_Base::instance();
+    return CRM_DoctorWhen_Upgrader_Base::instance();
   }
 }
 
