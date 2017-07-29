@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/doctorwhen</path>
+    <page_callback>CRM_DoctorWhen_Form_Cleanup</page_callback>
+    <title>Cleanup</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
