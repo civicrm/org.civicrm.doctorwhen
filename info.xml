@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <extension key="org.civicrm.doctorwhen" type="module">
   <file>doctorwhen</file>
-  <name>FIXME</name>
-  <description>FIXME</description>
+  <name>Doctor When</name>
+  <description>Analyze and fix discrepancies in timestamps and datetimes</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>Tim Otten</author>
@@ -20,7 +20,7 @@
   <compatibility>
     <ver>4.7</ver>
   </compatibility>
-  <comments>This is a new, undeveloped module</comments>
+  <comments>This is a new, undeveloped module.</comments>
   <civix>
     <namespace>CRM/Doctorwhen</namespace>
   </civix>
