@@ -6,16 +6,24 @@
  * @see https://wiki.civicrm.org/confluence/display/CRMDOC/QuickForm+Reference
  */
 class CRM_DoctorWhen_Form_Cleanup extends CRM_Core_Form {
-  public function buildQuickForm() {
+  /**
+   * @var CRM_DoctorWhen_Cleanups
+   */
+  private $cleanups;
 
-    // add form elements
-    $this->add(
-      'select', // field type
-      'favorite_color', // field name
-      'Favorite Color', // field label
-      $this->getColorOptions(), // list of options
-      TRUE // is required
-    );
+  public function __construct($state, $action, $method, $name) {
+    parent::__construct($state, $action, $method, $name);
+    $this->cleanups = new CRM_DoctorWhen_Cleanups();
+  }
+
+
+  public function buildQuickForm() {
+    $taskLabels = array();
+    foreach ($this->cleanups->getAll() as $id => $cleanup) {
+      $taskLabels[$cleanup->getTitle()] = $id;
+    }
+    $this->addCheckBox('tasks', 'Tasks', $taskLabels);
+
     $this->addButtons(array(
       array(
         'type' => 'submit',
@@ -29,27 +37,38 @@ class CRM_DoctorWhen_Form_Cleanup extends CRM_Core_Form {
     parent::buildQuickForm();
   }
 
-  public function postProcess() {
-    $values = $this->exportValues();
-    $options = $this->getColorOptions();
-    CRM_Core_Session::setStatus(ts('You picked color "%1"', array(
-      1 => $options[$values['favorite_color']],
-    )));
-    parent::postProcess();
+  public function setDefaultValues() {
+    $defaults = array();
+    $defaults['tasks'] = array();
+    foreach ($this->cleanups->getAll() as $id => $cleanup) {
+      $defaults['tasks'][$id] = 1;
+    }
+    return $defaults;
   }
 
-  public function getColorOptions() {
-    $options = array(
-      '' => ts('- select -'),
-      '#f00' => ts('Red'),
-      '#0f0' => ts('Green'),
-      '#00f' => ts('Blue'),
-      '#f0f' => ts('Purple'),
-    );
-    foreach (array('1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e') as $f) {
-      $options["#{$f}{$f}{$f}"] = ts('Grey (%1)', array(1 => $f));
+  public function postProcess() {
+    $values = $this->exportValues();
+    $options = array('tasks' => array());
+    foreach ($values['tasks'] as $id => $bool) {
+      if ($bool) {
+        $options['tasks'][] = $id;
+      }
     }
-    return $options;
+    $runner = new CRM_Queue_Runner(array(
+      'title' => ts('Doctor When: Temporal cleanup agent'),
+      'queue' => $this->cleanups->buildQueue($options),
+      'onEnd' => array(__CLASS__, 'onEnd'),
+      'onEndUrl' => CRM_Utils_System::url('civicrm/doctorwhen', 'reset=1'),
+    ));
+    $runner->runAllViaWeb(); // does not return
+  }
+
+  /**
+   * Handle the final step of the queue
+   * @param \CRM_Queue_TaskContext $ctx
+   */
+  public static function onEnd(CRM_Queue_TaskContext $ctx) {
+    CRM_Core_Session::setStatus(ts('Executed DoctorWhen.'), '', 'success');
   }
 
   /**
