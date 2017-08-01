@@ -17,13 +17,15 @@ columns, (b) re-adjusting data for a timezone, and/or (c) other inter-related fa
 
 ## Q: How urgent is this issue?
 
-This depends on your organization:
+In the near-term, this depends on your organization:
 
  * If the organization doesn't use or pay attention to any problematic fields, then it doesn't matter.
  * If the organization operates within one timezone (or maybe two adjacent timezones), then the discrepancies
    may be unnoticeable.
  * If the organization operates across many timezones, then the discrepancies could become quite confusing.
    (This is particularly true if the organization straddles the International Date Line.)
+
+In the long-term -- even if you don't have an issue today -- it may become important to address this. `TIMESTAMP`s will gradually become the standard as new installations use them by default. Future extensions, fixes, and enhancements may come to depend on having `TIMESTAMP`s.
 
 ## Q: Can you explain a scenario that is messed up?
 
@@ -70,9 +72,6 @@ currently configured timezone.  So:
 
 A few basic reasons:
 
- * The `civicrm-core` project is part of a bigger ecosystem (which also includes system-implementers, extension-developers, and CMS developers).  The
-   old schema using `DATETIME` was quirky and misguided, but it's entirely possible that others in the ecosystem have (a) fashioned alternative
-   work-arounds and/or (b) trained their users to expect the quirks and/or (c) built processes or customizations which subtly depend on them.
- * The problems in this space are subjective.  While we can test/validate individual configurations and screens, we cannot conceive of (let alone
-   test) all possible configurations a-priori.
- * Fixing this could reveal other issues.
+ * Fixing this could reveal other problems.
+ * The `civicrm-core` project is part of a bigger ecosystem (which also includes system-implementers, extension-developers, and CMS developers).  The old schema using `DATETIME` was quirky and misguided, but it's entirely possible that others in the ecosystem have (a) fashioned alternative work-arounds and/or (b) trained their users to expect the quirks and/or (c) built processes or customizations which subtly depend on them.
+ * The problems in this space are subjective.  While we can test/validate individual configurations and screens, we cannot conceive of (let alone test) all possible configurations a-priori.
