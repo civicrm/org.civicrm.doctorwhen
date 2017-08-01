@@ -1,5 +1,7 @@
 <?php
 
+use CRM_Utils_Check_Component_Timestamps as Timestamps;
+
 class CRM_DoctorWhen_Cleanups {
 
   protected $queueName;
@@ -16,6 +18,12 @@ class CRM_DoctorWhen_Cleanups {
     // Note: The order of tasks *is* significant.
     $this->tasks = array();
     $this->tasks['SuspendTracking'] = new CRM_DoctorWhen_Cleanups_SuspendTracking();
+    if (is_callable(array('CRM_Utils_Check_Component_Timestamps', 'getConvertedTimestamps'))) {
+      foreach (Timestamps::getConvertedTimestamps() as $tgt) {
+        $id = 'ReconcileSchema::' . $tgt['table'] . '::' . $tgt['column'];
+        $this->tasks[$id] = new CRM_DoctorWhen_Cleanups_ConvertTimestamp($tgt);
+      }
+    }
     $this->tasks['ActivityCreated'] = new CRM_DoctorWhen_Cleanups_ActivityCreated();
     $this->tasks['ActivityModified'] = new CRM_DoctorWhen_Cleanups_ActivityModified();
     $this->tasks['CaseCreated'] = new CRM_DoctorWhen_Cleanups_CaseCreated();
