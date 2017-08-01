@@ -33,7 +33,7 @@ function civicrm_api3_doctor_when_run($params) {
     throw new API_Exception("The list of tasks must not be empty.");
   }
   elseif (in_array('*', $options['tasks'])) {
-    $options['tasks'] = array_keys($cleanups->getAll());
+    $options['tasks'] = array_keys($cleanups->getAllActive());
   }
 
   $queueRunner = new CRM_Queue_Runner(array(

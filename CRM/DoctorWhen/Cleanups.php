@@ -12,14 +12,15 @@ class CRM_DoctorWhen_Cleanups {
 
   public function __construct($queueName = 'DoctorWhen') {
     $this->queueName = $queueName;
-    $this->tasks = array(
-      'SuspendTracking' => new CRM_DoctorWhen_Cleanups_SuspendTracking(),
-      'ActivityCreated' => new CRM_DoctorWhen_Cleanups_ActivityCreated(),
-      'ActivityModified' => new CRM_DoctorWhen_Cleanups_ActivityModified(),
-      'CaseCreated' => new CRM_DoctorWhen_Cleanups_CaseCreated(),
-      'CaseModified' => new CRM_DoctorWhen_Cleanups_CaseModified(),
-      'RestoreTracking' => new CRM_DoctorWhen_Cleanups_RestoreTracking(),
-    );
+
+    // Note: The order of tasks *is* significant.
+    $this->tasks = array();
+    $this->tasks['SuspendTracking'] = new CRM_DoctorWhen_Cleanups_SuspendTracking();
+    $this->tasks['ActivityCreated'] = new CRM_DoctorWhen_Cleanups_ActivityCreated();
+    $this->tasks['ActivityModified'] = new CRM_DoctorWhen_Cleanups_ActivityModified();
+    $this->tasks['CaseCreated'] = new CRM_DoctorWhen_Cleanups_CaseCreated();
+    $this->tasks['CaseModified'] = new CRM_DoctorWhen_Cleanups_CaseModified();
+    $this->tasks['RestoreTracking'] = new CRM_DoctorWhen_Cleanups_RestoreTracking();
   }
 
   /**
@@ -40,7 +41,7 @@ class CRM_DoctorWhen_Cleanups {
     $options['tasks'] = array_unique(array_merge($options['tasks'],
       array('SuspendTracking', 'RestoreTracking')));
 
-    foreach ($this->getAll() as $id => $provider) {
+    foreach ($this->getAllActive() as $id => $provider) {
       /** @var CRM_DoctorWhen_Cleanups_Base $provider */
       if (in_array($id, $options['tasks'])) {
         $provider->enqueue($queue, $options);
@@ -52,9 +53,24 @@ class CRM_DoctorWhen_Cleanups {
 
   /**
    * @return array
+   *   Array(string $id => object $task).
    */
   public function getAll() {
     return $this->tasks;
+  }
+
+  /**
+   * @return array
+   *   Array(string $id => object $task).
+   */
+  public function getAllActive() {
+    $tasks = array();
+    foreach ($this->tasks as $id => $task) {
+      if ($task->isActive()) {
+        $tasks[$id] = $task;
+      }
+    }
+    return $tasks;
   }
 
 }

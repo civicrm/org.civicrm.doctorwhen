@@ -3,6 +3,10 @@ abstract class CRM_DoctorWhen_Cleanups_Base {
 
   const DEFAULT_BATCH_SIZE = 5000;
 
+  public function isActive() {
+    return TRUE;
+  }
+
   public abstract function getTitle();
 
   public abstract function enqueue(CRM_Queue_Queue $queue, $options);

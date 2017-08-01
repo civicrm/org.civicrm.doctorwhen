@@ -19,7 +19,7 @@ class CRM_DoctorWhen_Form_Cleanup extends CRM_Core_Form {
 
   public function buildQuickForm() {
     $taskLabels = array();
-    foreach ($this->cleanups->getAll() as $id => $cleanup) {
+    foreach ($this->cleanups->getAllActive() as $id => $cleanup) {
       $taskLabels[$cleanup->getTitle()] = $id;
     }
     $this->addCheckBox('tasks', 'Tasks', $taskLabels);
@@ -40,7 +40,7 @@ class CRM_DoctorWhen_Form_Cleanup extends CRM_Core_Form {
   public function setDefaultValues() {
     $defaults = array();
     $defaults['tasks'] = array();
-    foreach ($this->cleanups->getAll() as $id => $cleanup) {
+    foreach ($this->cleanups->getAllActive() as $id => $cleanup) {
       $defaults['tasks'][$id] = 1;
     }
     return $defaults;
