@@ -40,9 +40,11 @@ class CRM_DoctorWhen_Form_Cleanup extends CRM_Core_Form {
   public function setDefaultValues() {
     $defaults = array();
     $defaults['tasks'] = array();
-    foreach ($this->cleanups->getAllActive() as $id => $cleanup) {
-      $defaults['tasks'][$id] = 1;
-    }
+    //  foreach ($this->cleanups->getAllActive() as $id => $cleanup) {
+    //    $defaults['tasks'][$id] = 1;
+    //  }
+    $defaults['tasks']['SuspendTracking'] = 1;
+    $defaults['tasks']['RestoreTracking'] = 1;
     return $defaults;
   }
 
