@@ -2,6 +2,10 @@
 
 class CRM_DoctorWhen_Cleanups_CaseCreated extends CRM_DoctorWhen_Cleanups_Base {
 
+  public function isActive() {
+    return CRM_Core_DAO::checkFieldExists('civicrm_case', 'created_date');
+  }
+
   public function getTitle() {
     return ts('"civicrm_case.created_date" - Fill in missing values using the activity log (CRM-20958)');
   }
