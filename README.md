@@ -2,6 +2,8 @@
 
 `DoctorWhen` is a CiviCRM extension aimed at correcting problems in date/time/timestamp fields.
 
+![Screenshot](/img/screenshot.png)
+
 The extension is currently experimental. It is *not critical* for all users to execute this immediately. If you're ready to work in this, please:
 
  * Read the [problem description](/doc/PROBLEM.md).
