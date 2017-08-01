@@ -1,9 +1,5 @@
 {* HEADER *}
 
-<div class="crm-submit-buttons">
-{include file="CRM/common/formButtons.tpl" location="top"}
-</div>
-
 <div class="help">
   {ts}Doctor When is an <b>EXPERIMENTAL</b> tool for cleaning up datetime/timestamp data.{/ts}
   {ts}Please take precautions:{/ts}
