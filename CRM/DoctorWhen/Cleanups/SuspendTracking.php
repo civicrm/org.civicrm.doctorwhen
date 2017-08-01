@@ -3,7 +3,7 @@
 class CRM_DoctorWhen_Cleanups_SuspendTracking extends CRM_DoctorWhen_Cleanups_Base {
 
   public function getTitle() {
-    return ts('Suspend modification tracking during upgrade (CRM-20958)');
+    return ts('Suspend modification tracking during upgrade (CRM-20958) [required]');
   }
 
   /**

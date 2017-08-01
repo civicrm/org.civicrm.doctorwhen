@@ -3,7 +3,7 @@
 class CRM_DoctorWhen_Cleanups_RestoreTracking extends CRM_DoctorWhen_Cleanups_Base {
 
   public function getTitle() {
-    return ts('Restore modification tracking after upgrade (CRM-20958)');
+    return ts('Restore modification tracking after upgrade (CRM-20958) [required]');
   }
 
   /**
