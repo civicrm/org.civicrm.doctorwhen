@@ -4,7 +4,7 @@
 
 ![Screenshot](/img/screenshot.png)
 
-The extension is currently experimental. It is *not critical* for all users to execute this immediately. If you're ready to work in this, please:
+The extension is currently experimental. It is *not critical* for all users to execute this immediately. If you're ready to work with this topic, please:
 
  * Read the [problem description](/doc/PROBLEM.md).
  * Before executing in production, execute on a staging system with representative data. Inspect the results for correctness.
