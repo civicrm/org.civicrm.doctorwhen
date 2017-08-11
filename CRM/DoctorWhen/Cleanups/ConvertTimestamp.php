@@ -28,7 +28,7 @@ class CRM_DoctorWhen_Cleanups_ConvertTimestamp extends CRM_DoctorWhen_Cleanups_B
   }
 
   public function getTitle() {
-    $title = sprintf('"%s" - Convert from DATETIME to TIMESTAMP',
+    $title = sprintf('"%s" - Change data type from DATETIME to TIMESTAMP',
       $this->table . '.' . $this->column);
     if ($this->jira) {
       $title .= sprintf(' (%s)', $this->jira);
