@@ -5,7 +5,7 @@
  */
 class CRM_DoctorWhen_Cleanups_ConvertTimestamp extends CRM_DoctorWhen_Cleanups_Base {
 
-  private $table, $column, $jira;
+  private $table, $column, $jira, $default;
 
   /**
    * CRM_DoctorWhen_Cleanups_ReconcileSchema constructor.
@@ -21,6 +21,7 @@ class CRM_DoctorWhen_Cleanups_ConvertTimestamp extends CRM_DoctorWhen_Cleanups_B
     $this->table = CRM_Utils_Array::value('table', $tgt);
     $this->column = CRM_Utils_Array::value('column', $tgt);
     $this->jira = CRM_Utils_Array::value('jira', $tgt);
+    $this->default = CRM_Utils_Array::value('default', $tgt);
   }
 
   public function isActive() {
@@ -44,6 +45,9 @@ class CRM_DoctorWhen_Cleanups_ConvertTimestamp extends CRM_DoctorWhen_Cleanups_B
    */
   public function enqueue(CRM_Queue_Queue $queue, $options) {
     $sql = "ALTER TABLE {$this->table} CHANGE {$this->column} {$this->column} TIMESTAMP";
+    if (!empty($this->default)) {
+      $sql .= "NULL DEFAULT {$this->default}";
+    }
     $queue->createItem($this->createTask($this->getTitle(), 'executeQuery', $sql));
   }
 
