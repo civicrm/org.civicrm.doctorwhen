@@ -44,7 +44,7 @@ class CRM_DoctorWhen_Cleanups_ConvertTimestamp extends CRM_DoctorWhen_Cleanups_B
    * @param array $options
    */
   public function enqueue(CRM_Queue_Queue $queue, $options) {
-    $sql = "ALTER TABLE {$this->table} CHANGE {$this->column} {$this->column} TIMESTAMP";
+    $sql = "ALTER TABLE {$this->table} CHANGE {$this->column} {$this->column} TIMESTAMP ";
     if (!empty($this->default)) {
       $sql .= " NULL DEFAULT {$this->default}";
     }
