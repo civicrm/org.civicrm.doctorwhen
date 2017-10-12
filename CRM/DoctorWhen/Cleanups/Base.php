@@ -53,7 +53,7 @@ abstract class CRM_DoctorWhen_Cleanups_Base {
    *
    * @see CRM_Core_DAO::executeQuery
    */
-  public static function executeQuery($ctx, $sql, $vars) {
+  public static function executeQuery($ctx, $sql, $vars = array()) {
     CRM_Core_DAO::executeQuery($sql, $vars);
     return TRUE;
   }

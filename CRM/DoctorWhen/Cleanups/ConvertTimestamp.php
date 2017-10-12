@@ -22,7 +22,7 @@ class CRM_DoctorWhen_Cleanups_ConvertTimestamp extends CRM_DoctorWhen_Cleanups_B
     $this->table = CRM_Utils_Array::value('table', $tgt);
     $this->column = CRM_Utils_Array::value('column', $tgt);
     $this->jira = CRM_Utils_Array::value('jira', $tgt);
-    $this->default = CRM_Utils_Array::value('default', $tgt);
+    $this->default = CRM_Utils_Array::value('default', $tgt, 'NULL');
     $this->comment = CRM_Utils_Array::value('comment', $tgt);
   }
 
@@ -48,7 +48,7 @@ class CRM_DoctorWhen_Cleanups_ConvertTimestamp extends CRM_DoctorWhen_Cleanups_B
   public function enqueue(CRM_Queue_Queue $queue, $options) {
     $sql = "ALTER TABLE {$this->table} CHANGE {$this->column} {$this->column} TIMESTAMP NULL DEFAULT {$this->default} ";
     if (isset($this->comment)) {
-      $sql .= " {$this->comment}";
+      $sql .= " COMMENT '{$this->comment}'";
     }
     $queue->createItem($this->createTask($this->getTitle(), 'executeQuery', $sql));
   }
