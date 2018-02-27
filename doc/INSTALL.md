@@ -6,7 +6,7 @@
 ## Navigate to your extension folder
 $ cv path -x.
 /srv/buildkit/build/dmaster/sites/default/files/civicrm/ext
-$ cd /srv/buildkit/build/dmaster/sites/default/files/civicrm/ext/doctorwhen
+$ cd /srv/buildkit/build/dmaster/sites/default/files/civicrm/ext
 
 ## Clone the repo
 $ git clone https://github.com/civicrm/org.civicrm.doctorwhen
