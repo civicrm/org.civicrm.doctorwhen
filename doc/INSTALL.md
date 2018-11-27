@@ -42,3 +42,7 @@ civicrm_api3('DoctorWhen', 'run', array(
   'tasks' => '*',
 ));
 ```
+
+## Uninstall
+
+While DoctorWhen is an extremely useful extension for databases that have been upgraded over time, it has no ongoing functionality at this time.  Leaving the extension installed could potentially create problems later.  Therefore, it is recommended that DoctorWhen be uninstalled after confirming that it has successfully done it's job.
