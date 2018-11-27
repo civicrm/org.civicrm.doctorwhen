@@ -11,6 +11,7 @@ The extension is currently experimental. It is *not critical* for all users to e
  * Before executing in production, execute on a staging system with representative data. Inspect the results for correctness.
  * Before executing in production, make an up-to-date backup of your MySQL data.
  * Report back on successes or failures.
+ * After confirming all changes have been completed successfully, it is advised that you uninstall this extension.
 
 ## Documentation
 
