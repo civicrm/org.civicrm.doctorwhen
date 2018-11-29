@@ -45,4 +45,23 @@ civicrm_api3('DoctorWhen', 'run', array(
 
 ## Uninstall
 
-While DoctorWhen is an extremely useful extension for databases that have been upgraded over time, it has no ongoing functionality at this time.  Leaving the extension installed could potentially create problems later.  Therefore, it is recommended that DoctorWhen be uninstalled after confirming that it has successfully done it's job.
+DoctorWhen has no ongoing functionality at this time and should be disabled and uninstalled after successfully running.  Disabling and uninstalling the extension is done in the normal fasion, as outlined in the System Administrator Guide.
+
+Disabling an extension:  https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/#enabling-and-disabling-extensions
+Uninstalling an extension:  https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/#uninstalling-extensions
+
+Don't forget to delete the extension from the extensions directory.
+
+```
+## Navigate to your extension folder
+$ cv path -x.
+/srv/buildkit/build/dmaster/sites/default/files/civicrm/ext
+$ cd /srv/buildkit/build/dmaster/sites/default/files/civicrm/ext
+
+## Disable the extension
+$ cv ext:disable doctorwhen
+$ cv ext:uninstall doctorwhen
+
+## Delete the folder and extension files
+$ rm -rf org.civicrm.doctorwhen
+```
