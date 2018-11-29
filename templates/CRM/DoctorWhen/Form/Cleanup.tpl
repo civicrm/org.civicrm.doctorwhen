@@ -8,7 +8,7 @@
     <li>{ts}Before executing in production, execute on a staging system with representative data. Inspect the data.{/ts}</li>
     <li>{ts}Before executing in production, take a new backup.{/ts}</li>
   </ul>
-  {ts}After confirming that DoctorWhen has run successfully, the etension should be uninstalled.{/ts}
+  {ts}After confirming that DoctorWhen has run successfully, the extension should be uninstalled.{/ts}
 </div>
 
 {* FIELD EXAMPLE: OPTION 1 (AUTOMATIC LAYOUT) *}
