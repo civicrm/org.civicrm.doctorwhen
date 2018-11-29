@@ -1,4 +1,4 @@
-# Doctor When: Installation and Usage
+# Doctor When: Installation, Usage, and Uninstallation
 
 ## Installation
 
