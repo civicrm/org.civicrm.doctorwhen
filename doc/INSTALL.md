@@ -1,4 +1,4 @@
-# Doctor When: Installation and Usage
+# Doctor When: Installation, Usage, and Uninstallation
 
 ## Installation
 
@@ -41,4 +41,26 @@ You can execute the full list of DoctorWhen tasks by calling the `DoctorWhen.run
 civicrm_api3('DoctorWhen', 'run', array(
   'tasks' => '*',
 ));
+```
+
+## Uninstall (General)
+
+DoctorWhen has no ongoing functionality at this time and should be disabled and uninstalled after successfully running.  Disabling and uninstalling the extension is done in the normal fasion, as outlined in the System Administrator Guide.
+
+* [Sysatem Administrator Guide: Disabling an extension](https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/#enabling-and-disabling-extensions)
+* [Sysatem Administrator Guide: Uninstalling an extension](https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/#uninstalling-extensions)
+
+Don't forget to delete the extension from the extensions directory.
+
+## Uninstall (CLI)
+
+```
+## Disable the extension
+$ cv ext:disable doctorwhen
+$ cv ext:uninstall doctorwhen
+
+## Delete the folder and extension files
+$ cv path -x doctorwhen
+/srv/buildkit/build/dmaster/sites/default/files/civicrm/ext/org.civicrm.doctorwhen
+$ rm -rf /srv/buildkit/build/dmaster/sites/default/files/civicrm/ext/org.civicrm.doctorwhen
 ```
