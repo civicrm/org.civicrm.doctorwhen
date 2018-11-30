@@ -53,15 +53,12 @@ DoctorWhen has no ongoing functionality at this time and should be disabled and 
 Don't forget to delete the extension from the extensions directory.
 
 ```
-## Navigate to your extension folder
-$ cv path -x.
-/srv/buildkit/build/dmaster/sites/default/files/civicrm/ext
-$ cd /srv/buildkit/build/dmaster/sites/default/files/civicrm/ext
-
 ## Disable the extension
 $ cv ext:disable doctorwhen
 $ cv ext:uninstall doctorwhen
 
 ## Delete the folder and extension files
-$ rm -rf org.civicrm.doctorwhen
+$ cv path -x doctorwhen
+/srv/buildkit/build/dmaster/sites/default/files/civicrm/ext/org.civicrm.doctorwhen
+$ rm -rf /srv/buildkit/build/dmaster/sites/default/files/civicrm/ext/org.civicrm.doctorwhen
 ```
