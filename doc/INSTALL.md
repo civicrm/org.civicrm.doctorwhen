@@ -47,9 +47,8 @@ civicrm_api3('DoctorWhen', 'run', array(
 
 DoctorWhen has no ongoing functionality at this time and should be disabled and uninstalled after successfully running.  Disabling and uninstalling the extension is done in the normal fasion, as outlined in the System Administrator Guide.
 
-Disabling an extension:  https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/#enabling-and-disabling-extensions
-
-Uninstalling an extension:  https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/#uninstalling-extensions
+* [Sysatem Administrator Guide: Disabling an extension](https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/#enabling-and-disabling-extensions)
+* [Sysatem Administrator Guide: Uninstalling an extension](https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/#uninstalling-extensions)
 
 Don't forget to delete the extension from the extensions directory.
 
