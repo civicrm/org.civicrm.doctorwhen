@@ -1,7 +1,7 @@
 {* HEADER *}
 
 <div class="help">
-  {ts}Doctor When is an <b>EXPERIMENTAL</b> tool for cleaning up datetime/timestamp data.{/ts}
+  {ts}Doctor When is a tool for cleaning up datetime/timestamp data.{/ts}
   {ts}Please take precautions:{/ts}
   <ul>
     <li>{ts 1="https://github.com/civicrm/org.civicrm.doctorwhen/issues/"}Before executing in production, review the list of <a href="%1">open issues</a>.{/ts}</li>
