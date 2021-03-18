@@ -15,7 +15,7 @@
   </urls>
   <releaseDate>2017-12-17</releaseDate>
   <version>1.1</version>
-  <develStage>alpha</develStage>
+  <develStage>stable</develStage>
   <compatibility>
     <ver>4.7</ver>
     <ver>5.0</ver>
