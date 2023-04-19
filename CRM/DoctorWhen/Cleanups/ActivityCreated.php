@@ -3,7 +3,7 @@
 class CRM_DoctorWhen_Cleanups_ActivityCreated extends CRM_DoctorWhen_Cleanups_Base {
 
   public function isActive() {
-    return CRM_Core_DAO::checkFieldExists('civicrm_activity', 'created_date');
+    return CRM_Core_BAO_SchemaHandler::checkIfFieldExists('civicrm_activity', 'created_date');
   }
 
 
