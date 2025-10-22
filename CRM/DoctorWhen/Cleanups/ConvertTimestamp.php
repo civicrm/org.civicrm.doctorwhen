@@ -19,11 +19,11 @@ class CRM_DoctorWhen_Cleanups_ConvertTimestamp extends CRM_DoctorWhen_Cleanups_B
    *     - jira: (optional) string, ex: "CRM-12345".
    */
   public function __construct($tgt) {
-    $this->table = CRM_Utils_Array::value('table', $tgt);
-    $this->column = CRM_Utils_Array::value('column', $tgt);
-    $this->jira = CRM_Utils_Array::value('jira', $tgt);
-    $this->default = CRM_Utils_Array::value('default', $tgt, 'NULL');
-    $this->comment = CRM_Utils_Array::value('comment', $tgt);
+    $this->table = $tgt['table'] ?? NULL;
+    $this->column = $tgt['column'] ?? NULL;
+    $this->jira = $tgt['jira'] ?? NULL;
+    $this->default = $tgt['default'] ?? 'NULL';
+    $this->comment = $tgt['comment'] ?? NULL;
   }
 
   public function isActive() {
