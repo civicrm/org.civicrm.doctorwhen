@@ -24,7 +24,7 @@ function _civicrm_api3_doctor_when_run_spec(&$spec) {
 function civicrm_api3_doctor_when_run($params) {
   $cleanups = new CRM_DoctorWhen_Cleanups();
 
-  $options = CRM_Utils_Array::subset($params, array('tasks'));
+  $options = CRM_Utils_Array::subset($params, ['tasks']);
   if (is_string($options['tasks'])) {
     $options['tasks'] = explode(',', $options['tasks']);
   }
@@ -36,10 +36,10 @@ function civicrm_api3_doctor_when_run($params) {
     $options['tasks'] = array_keys($cleanups->getAllActive());
   }
 
-  $queueRunner = new CRM_Queue_Runner(array(
+  $queueRunner = new CRM_Queue_Runner([
     'title' => ts('CiviCRM Cleanup Tasks'),
     'queue' => $cleanups->buildQueue($options),
-  ));
+  ]);
   $queueResult = $queueRunner->runAll();
   if ($queueResult !== TRUE) {
     $errorMessage = CRM_Core_Error::formatTextException($queueResult['exception']);
@@ -47,6 +47,6 @@ function civicrm_api3_doctor_when_run($params) {
     throw $queueResult['exception']; // FIXME test
   }
 
-  return civicrm_api3_create_success(array(), $params, 'DoctorWhen', 'run');
+  return civicrm_api3_create_success([], $params, 'DoctorWhen', 'run');
 
 }

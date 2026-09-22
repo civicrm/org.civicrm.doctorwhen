@@ -18,19 +18,19 @@ class CRM_DoctorWhen_Form_Cleanup extends CRM_Core_Form {
 
 
   public function buildQuickForm() {
-    $taskLabels = array();
+    $taskLabels = [];
     foreach ($this->cleanups->getAllActive() as $id => $cleanup) {
       $taskLabels[$cleanup->getTitle()] = $id;
     }
     $this->addCheckBox('tasks', 'Tasks', $taskLabels);
 
-    $this->addButtons(array(
-      array(
+    $this->addButtons([
+      [
         'type' => 'submit',
         'name' => ts('Submit'),
         'isDefault' => TRUE,
-      ),
-    ));
+      ],
+    ]);
 
     // export form elements
     $this->assign('elementNames', $this->getRenderableElementNames());
@@ -38,8 +38,8 @@ class CRM_DoctorWhen_Form_Cleanup extends CRM_Core_Form {
   }
 
   public function setDefaultValues() {
-    $defaults = array();
-    $defaults['tasks'] = array();
+    $defaults = [];
+    $defaults['tasks'] = [];
     //  foreach ($this->cleanups->getAllActive() as $id => $cleanup) {
     //    $defaults['tasks'][$id] = 1;
     //  }
@@ -50,18 +50,18 @@ class CRM_DoctorWhen_Form_Cleanup extends CRM_Core_Form {
 
   public function postProcess() {
     $values = $this->exportValues();
-    $options = array('tasks' => array());
+    $options = ['tasks' => []];
     foreach ($values['tasks'] as $id => $bool) {
       if ($bool) {
         $options['tasks'][] = $id;
       }
     }
-    $runner = new CRM_Queue_Runner(array(
+    $runner = new CRM_Queue_Runner([
       'title' => ts('Doctor When: Temporal cleanup agent'),
       'queue' => $this->cleanups->buildQueue($options),
-      'onEnd' => array(__CLASS__, 'onEnd'),
+      'onEnd' => [__CLASS__, 'onEnd'],
       'onEndUrl' => CRM_Utils_System::url('civicrm/doctorwhen', 'reset=1'),
-    ));
+    ]);
     $runner->runAllViaWeb(); // does not return
   }
 
@@ -83,7 +83,7 @@ class CRM_DoctorWhen_Form_Cleanup extends CRM_Core_Form {
     // auto-rendered in the loop -- such as "qfKey" and "buttons".  These
     // items don't have labels.  We'll identify renderable by filtering on
     // the 'label'.
-    $elementNames = array();
+    $elementNames = [];
     foreach ($this->_elements as $element) {
       /** @var HTML_QuickForm_Element $element */
       $label = $element->getLabel();

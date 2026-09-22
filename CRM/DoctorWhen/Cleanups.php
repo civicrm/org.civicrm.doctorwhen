@@ -16,9 +16,9 @@ class CRM_DoctorWhen_Cleanups {
     $this->queueName = $queueName;
 
     // Note: The order of tasks *is* significant.
-    $this->tasks = array();
+    $this->tasks = [];
     $this->tasks['SuspendTracking'] = new CRM_DoctorWhen_Cleanups_SuspendTracking();
-    if (is_callable(array('CRM_Utils_Check_Component_Timestamps', 'getConvertedTimestamps'))) {
+    if (is_callable(['CRM_Utils_Check_Component_Timestamps', 'getConvertedTimestamps'])) {
       foreach (Timestamps::getConvertedTimestamps() as $tgt) {
         $id = 'ReconcileSchema::' . $tgt['table'] . '::' . $tgt['column'];
         $this->tasks[$id] = new CRM_DoctorWhen_Cleanups_ConvertTimestamp($tgt);
@@ -40,14 +40,14 @@ class CRM_DoctorWhen_Cleanups {
    * @return CRM_Queue_Queue
    */
   public function buildQueue($options) {
-    $queue = CRM_Queue_Service::singleton()->create(array(
+    $queue = CRM_Queue_Service::singleton()->create([
       'type' => 'Sql',
       'name' => $this->queueName,
       'reset' => TRUE,
-    ));
+    ]);
 
     $options['tasks'] = array_unique(array_merge($options['tasks'],
-      array('SuspendTracking', 'RestoreTracking')));
+      ['SuspendTracking', 'RestoreTracking']));
 
     foreach ($this->getAllActive() as $id => $provider) {
       /** @var CRM_DoctorWhen_Cleanups_Base $provider */
@@ -72,7 +72,7 @@ class CRM_DoctorWhen_Cleanups {
    *   Array(string $id => object $task).
    */
   public function getAllActive() {
-    $tasks = array();
+    $tasks = [];
     foreach ($this->tasks as $id => $task) {
       if ($task->isActive()) {
         $tasks[$id] = $task;

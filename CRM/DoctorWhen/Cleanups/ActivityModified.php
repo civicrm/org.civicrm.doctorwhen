@@ -29,7 +29,7 @@ class CRM_DoctorWhen_Cleanups_ActivityModified extends CRM_DoctorWhen_Cleanups_B
        SET modified_date = (SELECT MAX(l.modified_date) FROM civicrm_log l WHERE l.entity_table ="civicrm_activity" AND civicrm_activity.id = l.entity_id)
        WHERE (id BETWEEN %1 AND %2)
        AND modified_date IS NULL';
-      $vars = array(1 => array($startId, 'Int'), 2 => array($endId, 'Int'));
+      $vars = [1 => [$startId, 'Int'], 2 => [$endId, 'Int']];
 
       $queue->createItem($this->createTask($title, 'executeQuery', $sql, $vars));
     }

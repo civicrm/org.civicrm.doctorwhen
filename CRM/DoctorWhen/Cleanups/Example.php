@@ -19,9 +19,9 @@ class CRM_DoctorWhen_Cleanups_Example extends CRM_DoctorWhen_Cleanups_Base {
     // Example: Execute some basic SQL
     $title = 'Execute some basic SQL';
     $sql = 'UPDATE civicrm_foo SET foo = "bar" WHERE whiz LIKE %1 ';
-    $vars = array(
-      1 => array('some example data', 'String'),
-    );
+    $vars = [
+      1 => ['some example data', 'String'],
+    ];
     $queue->createItem(
       $this->createTask($title, 'executeQuery', $sql, $vars));
 

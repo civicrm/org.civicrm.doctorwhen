@@ -31,7 +31,7 @@ abstract class CRM_DoctorWhen_Cleanups_Base {
     $title = array_shift($args);
     $funcName = array_shift($args);
     $task = new CRM_Queue_Task(
-      array(get_class($this), $funcName),
+      [get_class($this), $funcName],
       $args,
       $title
     );
@@ -53,7 +53,7 @@ abstract class CRM_DoctorWhen_Cleanups_Base {
    *
    * @see CRM_Core_DAO::executeQuery
    */
-  public static function executeQuery($ctx, $sql, $vars = array()) {
+  public static function executeQuery($ctx, $sql, $vars = []) {
     CRM_Core_DAO::executeQuery($sql, $vars);
     return TRUE;
   }
