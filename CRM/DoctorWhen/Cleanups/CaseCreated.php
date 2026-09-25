@@ -28,7 +28,7 @@ class CRM_DoctorWhen_Cleanups_CaseCreated extends CRM_DoctorWhen_Cleanups_Base {
     )->getDatabaseResult()->fetchRow();
     for ($startId = $minId; $startId <= $maxId; $startId += self::DEFAULT_BATCH_SIZE) {
       $endId = $startId + self::DEFAULT_BATCH_SIZE - 1;
-      $vars = array(1 => array($startId, 'Int'), 2 => array($endId, 'Int'), 3 => array($openCaseTypeId, 'Int'));
+      $vars = [1 => [$startId, 'Int'], 2 => [$endId, 'Int'], 3 => [$openCaseTypeId, 'Int']];
 
       // CONSIDER: In my local system, the "Open Case" timestamps seem to be more synthetic (:00:00)
       //  $title = sprintf('CRM-20958 - Compute civicrm_case.created_date from "Open Case" (%d => %d)', $startId, $endId);

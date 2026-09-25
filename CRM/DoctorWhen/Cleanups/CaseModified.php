@@ -28,11 +28,11 @@ class CRM_DoctorWhen_Cleanups_CaseModified extends CRM_DoctorWhen_Cleanups_Base 
     )->getDatabaseResult()->fetchRow();
     for ($startId = $minId; $startId <= $maxId; $startId += self::DEFAULT_BATCH_SIZE) {
       $endId = $startId + self::DEFAULT_BATCH_SIZE - 1;
-      $vars = array(
-        1 => array($startId, 'Int'),
-        2 => array($endId, 'Int'),
-        3 => array($openCaseTypeId, 'Int'),
-      );
+      $vars = [
+        1 => [$startId, 'Int'],
+        2 => [$endId, 'Int'],
+        3 => [$openCaseTypeId, 'Int'],
+      ];
 
       $title = sprintf('CRM-20958 - Compute civicrm_case.modified_date from the activity log (%d => %d)',
         $startId, $endId);

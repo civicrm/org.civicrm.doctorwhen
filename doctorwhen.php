@@ -45,13 +45,13 @@ function doctorwhen_civicrm_enable() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
  */
 function doctorwhen_civicrm_navigationMenu(&$menu) {
-  _doctorwhen_civix_insert_navigation_menu($menu, 'Administer', array(
-    'label' => ts('Doctor When', array('domain' => 'org.civicrm.doctorwhen')),
+  _doctorwhen_civix_insert_navigation_menu($menu, 'Administer', [
+    'label' => ts('Doctor When', ['domain' => 'org.civicrm.doctorwhen']),
     'name' => 'doctor_when',
     'url' => 'civicrm/doctorwhen?reset=1',
     'permission' => 'administer CiviCRM',
     'operator' => 'OR',
     'separator' => 0,
-  ));
+  ]);
   _doctorwhen_civix_navigationMenu($menu);
 } // */
